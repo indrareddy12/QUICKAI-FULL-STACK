@@ -1,0 +1,36 @@
+def dfs_cycle(graph, node, visited, rec_stack):
+    visited.add(node)
+    rec_stack.add(node)
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            if dfs_cycle(graph, neighbor, visited, rec_stack):
+                return True
+        elif neighbor in rec_stack:
+            return True
+
+    rec_stack.remove(node)
+    return False
+
+def has_cycle(graph):
+    visited = set()
+    rec_stack = set()
+
+    for node in graph:
+        if node not in visited:
+            if dfs_cycle(graph, node, visited, rec_stack):
+                return True
+
+    return False
+
+# Example usage:
+graph = {
+    'A': ['B'],
+    'B': ['C'],
+    'C': ['D'],
+    'D': ['B'],  # This edge creates a cycle
+    'E': ['F'],
+    'F': []
+}
+
+print("Graph has a cycle" if has_cycle(graph) else "Graph does not have a cycle")
