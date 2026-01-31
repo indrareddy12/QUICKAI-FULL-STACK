@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.env
+.DS_Store
+pramaan.db
+*.sqlite3
+venv/
+.streamlit/secrets.toml
+uploads/
